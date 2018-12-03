@@ -54,10 +54,13 @@ typedef struct
     gpio_SLR_select_t   obj_slr_select;
     gpio_current_val_t  obj_current_value;
     gpio_data_dir_t     obj_data_direction;
-    gpio
+    gpio_res_t          obj_res_type;
 }gpio_module_cfg_t;
 
-gpio_errors_t InitGpioPort(gpio_bases_t port_base,gpio_data_dir_t port_direction,gpio_res_t res_type,gpio_current_val_t output_current,gpio_SLR_select_t slwRateSel,int8u val);
+gpio_errors_t InitGpioPort(gpio_module_cfg_t    module_obj,gpio_bases_t         port_base,
+                           gpio_SLR_select_t    slwRateSel,  gpio_data_dir_t      port_direction,
+                           gpio_res_t           res_type,   gpio_current_val_t   output_current,
+                          );
 gpio_errors_t InitGpioPin();
 gpio_errors_t ReInitGpioPort(specific_configs_and_the_unchanged_put_Zero);
 gpio_errors_t ReInitGpioPin(specific_configs_and_the_unchanged_put_Zero);

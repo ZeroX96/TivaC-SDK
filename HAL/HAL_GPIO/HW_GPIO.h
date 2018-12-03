@@ -8,6 +8,7 @@
 #ifndef HW_GPIO_H_
 #define HW_GPIO_H_
 #include "TYPES.h"
+#include <stdint.h>
 
 //if U wanna use the AHBUS DO_NOTHING otherwise, wanna use APBUS COMMENT the next line
 //#define ADVANCED_H_SPEED_BUS

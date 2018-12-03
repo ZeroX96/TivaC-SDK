@@ -7,7 +7,7 @@
  * /HAL_GPIO/GPIO.c
  */
 #include "GPIO.h"
-
+#define DATA_REG_3FC 0x3fx
 /*
 #define GPIO_DATA_REG (*(volatile uint32_t *)REG_BASE+DATA_OFFSET+3fc)
 
@@ -24,8 +24,10 @@ GPIO_DATA_REG |= (1<<pin_no);
 
 #define PORTS_NO 6
 static uint8_t ports_state[6]={0};  //the ports are all undefined at first.
-gpio_errors_t InitGpioPort(gpio_bases_t port_base,gpio_data_dir_t port_direction,gpio_res_t res_type,gpio_current_val_t output_current,gpio_SLR_select_t slwRateSel);
-{
+gpio_errors_t InitGpioPort(gpio_module_cfg_t    module_obj,gpio_bases_t         port_base,
+                           gpio_SLR_select_t    slwRateSel,  gpio_data_dir_t      port_direction,
+                           gpio_res_t           res_type,   gpio_current_val_t   output_current,
+                          );{
     gpio_errors_t ret_val=NO_GPIO_ERRORS;
     if( (port_base == BASE_A || port_base == BASE_B || port_base == BASE_C || port_base == BASE_D || port_base == BASE_E || port_base == BASE_F) &&
             ((port_direction == INPUT || (port_direction == OUTPUT)) && (res_type ==PULL_UP_RES,res_type == PULL_DWN_RES || res_type == OPNDRAIN_RES) &&
