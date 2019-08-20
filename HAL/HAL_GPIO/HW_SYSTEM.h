@@ -8,7 +8,6 @@
 #ifndef HW_SYSTEM_H_
 #define HW_SYSTEM_H_
 
-#define GPIO_CGC_REG 0x400FE608
-#define UDMA_CGC_REG //nothing_till_now
-
+#define CGC_GPIO_REG 0x400FE608
+#define CGC_UDMA_REG 0x400FE60C
 #endif /* HW_SYSTEM_H_ */

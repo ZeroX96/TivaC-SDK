@@ -37,7 +37,7 @@ typedef enum
 }gpio_bases_t;
 #endif
 
-#define GPIO_DATA_OFFSET                   0x000
+#define GPIO_DATA_OFFSET                   0x3FC
 #define GPIO_DIRECTION_OFFSET              0x400
 #define GPIO_INTERRUPT_SENSE_OFFSET        0x404
 #define GPIO_INTERRUPT_BOTH_EDGE_OFFSET    0x408

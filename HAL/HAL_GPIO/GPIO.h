@@ -7,20 +7,22 @@
 
 #ifndef GPIO_H_
 #define GPIO_H_
+#include "HW_TYPES.h"
 #include "HW_GPIO.h"
+#include "SYSTEM.h"
 #define GPIO_ERRORS_BASE 50
 
 typedef enum
 {
-    NO_GPIO_ERRORS       =1+GPIO_ERRORS_BASE,
-    INVALID_GPIO_PARAMS  =2+GPIO_ERRORS_BASE,
-    INVALID_GPIO_PIN     =3+GPIO_ERRORS_BASE,
+    NO_GPIO_ERRORS =GPIO_ERRORS_BASE,
+    INVALID_GPIO_PARAMS,
+    INVALID_GPIO_PIN,
 }gpio_errors_t;
 
 typedef enum
 {
-    INPUT,
-    OUTPUT,
+    INPUT=0x00,
+    OUTPUT=0xff,
 }gpio_data_dir_t;
 typedef enum
 {
@@ -30,23 +32,46 @@ typedef enum
 
 typedef enum
 {
-    PULL_UP_RES,
-    PULL_DWN_RES,
-    OPNDRAIN_RES,
+    PULL_UP_RES=GPIO_PULL_UP_SEL_OFFSET,
+    PULL_DWN_RES=GPIO_PULL_DOWN_SEL_OFFSET,
+    OPNDRAIN_RES=GPIO_OPEN_DRAIN_SEL_OFFSET,
 }gpio_res_t;            //
 
 typedef enum
 {
-    CURRENT_EQU_2MA,
-    CURRENT_EQU_4MA,
-    CURRENT_EQU_8MA,
+    CURRENT_EQU_2MA=GPIO_2_MA_DRIVE_SEL_OFFSET,
+    CURRENT_EQU_4MA=GPIO_4_MA_DRIVE_SEL_OFFSET,
+    CURRENT_EQU_8MA=GPIO_8_MA_DRIVE_SEL_OFFSET,
 }gpio_current_val_t;    //GPIO Current Drive Select
 typedef enum
 {
     SLR_OFF,
     SLR_ON,
-}gpio_SLR_select_t;     //GPIO Slew Rate Control Select
+}gpio_SLR_select_t;     //GPIO Slew Rate Control Select but note it's for 8mA only!!!!
 
+typedef enum
+{
+    AFSELECT_OFF=0x00,
+    AFSELECT_ON=0xff,
+}gpio_AF_select_t;     //GPIO alternative function Select and note there are more regs need to be ctrled:D
+
+typedef enum
+{
+    PIN_ZERO,
+    PIN_ONE,
+    PIN_TWO,
+    PIN_THREE,
+    PIN_FOUR,
+    PIN_FIVE,
+    PIN_SIX,
+    PIN_SEVEN,
+}gpio_module_pin_no_t;
+
+typedef enum
+{
+    ANALOG_EN=GPIO_ANALOG_MODE_SEL_OFFSET,
+    DIGITAL_EN=GPIO_DIGITAL_EN_OFFSET,
+}gpio_signal_mode_t;     //GPIO DIGITAL OR ANALOG.
 
 typedef struct
 {
@@ -55,12 +80,11 @@ typedef struct
     gpio_current_val_t  obj_current_value;
     gpio_data_dir_t     obj_data_direction;
     gpio_res_t          obj_res_type;
+    gpio_AF_select_t    obj_af_select;
+    gpio_signal_mode_t  obj_sig_mode;
 }gpio_module_cfg_t;
 
-gpio_errors_t InitGpioPort(gpio_module_cfg_t    module_obj,gpio_bases_t         port_base,
-                           gpio_SLR_select_t    slwRateSel,  gpio_data_dir_t      port_direction,
-                           gpio_res_t           res_type,   gpio_current_val_t   output_current,
-                          );
+gpio_errors_t InitGpioPort(gpio_module_cfg_t module_obj);
 gpio_errors_t InitGpioPin();
 gpio_errors_t ReInitGpioPort(specific_configs_and_the_unchanged_put_Zero);
 gpio_errors_t ReInitGpioPin(specific_configs_and_the_unchanged_put_Zero);

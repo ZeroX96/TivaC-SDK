@@ -7,7 +7,7 @@
 
 #ifndef HW_TYPES_H_
 #define HW_TYPES_H_
-
+#include "includes.h"
 /** HW_WRITE_REG
  *
  *  \brief  Macro to write a value to a 32 bit register.

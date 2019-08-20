@@ -9,16 +9,15 @@
 #include "SYSTEM.h"
 
 
-system_errors_t  enable_module(module_name_t module_name ,module_bit_t module_bit)
+system_errors_t  enable_module(module_name_t module_name ,module_numb_t module_numb)
 {
     system_errors_t ret_val=NO_SYS_ERROR;
     if( ( (module_name >= LOWEST_MODULE_NAME_VAL) && (module_name <= HIGHEST_MODULE_NAME_VAL) ) &&
-        ( ( module_bit >= LOWEST_MODULE_BIT_VAL ) && ( module_bit <= HIGHEST_MODULE_BIT_VAL ) )
-       )
-            {
+        ( ( module_numb >= LOWEST_MODULE_NUMB_VAL ) && ( module_numb <= HIGHEST_MODULE_NUMB_VAL ) )
+       ) {
                 switch (module_name) {
                 case GPIO:
-                    HW_SET_REG_BIT(GPIO_CGC_REG,module_bit);
+                    HW_SET_REG_BIT(CGC_GPIO_REG,module_numb);
                     break;
                 case UDMA:
                     //donothing_till_now:D
@@ -35,16 +34,16 @@ system_errors_t  enable_module(module_name_t module_name ,module_bit_t module_bi
     return ret_val;
 }
 
-system_errors_t  disable_module(module_name_t module_name ,module_bit_t module_bit)
+system_errors_t  disable_module(module_name_t module_name ,module_numb_t module_numb)
 {
     system_errors_t ret_val=NO_SYS_ERROR;
     if( ( (module_name >= LOWEST_MODULE_NAME_VAL) && (module_name <= HIGHEST_MODULE_NAME_VAL) ) &&
-        ( ( module_bit >= LOWEST_MODULE_BIT_VAL ) && ( module_bit <= HIGHEST_MODULE_BIT_VAL ) )
+        ( ( module_numb >= LOWEST_MODULE_NUMB_VAL ) && ( module_numb <= HIGHEST_MODULE_NUMB_VAL ) )
        )
             {
                 switch (module_name) {
                 case GPIO:
-                    HW_CLR_REG_BIT(GPIO_CGC_REG,module_bit);
+                    HW_CLR_REG_BIT(GPIO_CGC_REG,module_numb);
                     break;
                 case UDMA:
                     //donothing_till_now:D

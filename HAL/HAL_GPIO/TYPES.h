@@ -3,7 +3,7 @@
  *  Created on: 10 Oct 2018
  *  Author: Mahmoud
  */
-
+#if 0   //cancelled>>>will use the standard stdint.h    //18-8/19
 #ifndef TYPES_H_
 #define TYPES_H_
 
