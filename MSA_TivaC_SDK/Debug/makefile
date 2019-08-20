@@ -12,6 +12,8 @@ GEN_CMDS__FLAG :=
 ORDERED_OBJS += \
 "./main.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
+"./MSA_HAL_LAYER/HAL_GPIO/GPIO.obj" \
+"./MSA_HAL_LAYER/HAL_GPIO/SYSTEM.obj" \
 "../tm4c123gh6pm.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
@@ -24,7 +26,9 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include MSA_HAL_LAYER/HAL_GPIO/subdir_vars.mk
 -include subdir_rules.mk
+-include MSA_HAL_LAYER/HAL_GPIO/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -155,8 +159,8 @@ MSA_TivaC_SDK.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" 
-	-$(RM) "main.d" "tm4c123gh6pm_startup_ccs.d" 
+	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "MSA_HAL_LAYER\HAL_GPIO\GPIO.obj" "MSA_HAL_LAYER\HAL_GPIO\SYSTEM.obj" 
+	-$(RM) "main.d" "tm4c123gh6pm_startup_ccs.d" "MSA_HAL_LAYER\HAL_GPIO\GPIO.d" "MSA_HAL_LAYER\HAL_GPIO\SYSTEM.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

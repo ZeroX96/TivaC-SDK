@@ -112,4 +112,5 @@ PDE_DEPS__QUOTED :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
+MSA_HAL_LAYER/HAL_GPIO \
 
